@@ -84,9 +84,9 @@ public class AuthRealm extends AuthorizingRealm {
             {
                 map.clear();
                 map.put( "resourceIds", resourceIds );
-                List< com.tzg.webapp.auth.resource.Resource > resources = resourceService.selectList( map );
+                List< com.tzg.web.auth.resource.Resource > resources = resourceService.selectList( map );
 
-                for ( com.tzg.webapp.auth.resource.Resource resource : resources ) {
+                for ( com.tzg.web.auth.resource.Resource resource : resources ) {
                     if ( StringUtils.isBlank( resource.getUri() ) ) continue;
                     info.addStringPermission( resource.getUri() );
                 }

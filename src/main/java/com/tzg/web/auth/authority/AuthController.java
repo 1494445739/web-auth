@@ -1,7 +1,7 @@
 package com.tzg.web.auth.authority;
 
 import com.tzg.service.support.json.JsonResp;
-import com.tzg.webapp.auth.authorization.Authorization;
+import com.tzg.web.auth.authorization.Authorization;
 import com.tzg.web.auth.permission.Permission;
 import com.tzg.web.auth.user.User;
 import com.tzg.web.auth.authorization.AuthorizationService;
@@ -44,7 +44,7 @@ public class AuthController {
         List< Integer > roleIds     = new ArrayList<>();
         List< Integer > resourceIds = new ArrayList<>();
 
-        List< com.tzg.webapp.auth.resource.Resource > resourceList;
+        List< com.tzg.web.auth.resource.Resource > resourceList;
         List< Permission >                            permissionList;
         List< Authorization >                         authorizationList;
 

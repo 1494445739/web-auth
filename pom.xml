@@ -30,7 +30,6 @@
     <!-- ====================================================== -->
     <url>http://www.tzg.cn</url>
     <name>${project.artifactId}</name>
-    <version>${project.parent.version}</version>
     <description>======== 铜掌柜： 权限组件 ========</description>
 
     <!-- ====================================================== -->
