@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- ====================================================== -->
+    <!--                         POM 版本                       -->
+    <!-- ====================================================== -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ====================================================== -->
+    <!--                          父 POM                        -->
+    <!-- ====================================================== -->
+    <parent>
+        <groupId>com.tzg</groupId>
+        <artifactId>framework-wrapper</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ====================================================== -->
+    <!--                         POM 类型                       -->
+    <!-- ====================================================== -->
+    <packaging>war</packaging>
+
+    <!-- ====================================================== -->
+    <!--                         POM GAV                        -->
+    <!-- ====================================================== -->
+    <artifactId>web-auth</artifactId>
+
+    <!-- ====================================================== -->
+    <!--                       项目名和组织                      -->
+    <!-- ====================================================== -->
+    <url>http://www.tzg.cn</url>
+    <name>${project.artifactId}</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <description>======== 铜掌柜： 权限组件 ========</description>
+
+    <!-- ====================================================== -->
+    <!--                        开发者介绍                       -->
+    <!-- ====================================================== -->
+    <developers>
+        <developer>
+            <name>项目成员姓名</name>
+            <email>项目成员邮箱</email>
+            <organization>杭州铜米金融服务有限公司</organization>
+        </developer>
+    </developers>
+
+    <!-- ====================================================== -->
+    <!--                         属性定义                        -->
+    <!-- ====================================================== -->
+    <properties>
+        <shiro.version>1.2.2</shiro.version>
+    </properties>
+
+    <!-- ====================================================== -->
+    <!--                   组件依赖（第三方依赖）                  -->
+    <!-- ====================================================== -->
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-beanutils</groupId>
+                    <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- ====================================================== -->
+    <!-- 发布管理                                                -->
+    <!--                                                        -->
+    <!--     1. dev-release  正式版本                            -->
+    <!--     2. dev-snapshot 快照版本                            -->
+    <!-- ====================================================== -->
+    <distributionManagement>
+        <repository>
+            <id>dev-release</id>
+            <name>dev-nexus-release</name>
+            <url>http://dev.maven.com:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>dev-nexus-snapshots</id>
+            <name>dev-nexus-snapshot</name>
+            <url>http://dev.maven.com:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
