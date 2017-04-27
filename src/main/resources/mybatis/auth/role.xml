@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tzg.webapp.auth.role.RoleMapper">
+<mapper namespace="com.tzg.web.auth.role.RoleMapper">
 
-    <resultMap id="result" type="com.tzg.webapp.auth.role.Role">
+    <resultMap id="result" type="com.tzg.web.auth.role.Role">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="cdt" property="cdt"/>
@@ -47,7 +47,7 @@
         </if>
     </select>
 
-    <update id="update" parameterType="com.tzg.webapp.auth.role.Role">
+    <update id="update" parameterType="com.tzg.web.auth.role.Role">
         UPDATE auth_role
 
         <set>
@@ -79,7 +79,7 @@
         </where>
     </delete>
 
-    <insert id="insert" parameterType="com.tzg.webapp.auth.role.Role">
+    <insert id="insert" parameterType="com.tzg.web.auth.role.Role">
         INSERT INTO auth_role (name, cdt, udt) VALUES (#{name}, now(), now())
     </insert>
 

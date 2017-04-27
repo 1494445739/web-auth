@@ -47,9 +47,15 @@
         <property name="realm" ref="authRealm"/>
     </bean>
 
+<<<<<<< HEAD
     <bean id="authRealm" class="com.tzg.webapp.auth.anonymous.realm.AuthRealm"/>
 
     <bean id="authFilter" class="com.tzg.webapp.auth.anonymous.filter.AuthFilter"/>
+=======
+    <bean id="authRealm" class="com.tzg.web.auth.anonymous.realm.AuthRealm"/>
+
+    <bean id="authFilter" class="com.tzg.web.auth.anonymous.filter.AuthFilter"/>
+>>>>>>> 7ee11dee24706105dc6e13fa521a8257cbcd41b2
 
     <bean id="passwordService" class="org.apache.shiro.authc.credential.DefaultPasswordService"/>
 

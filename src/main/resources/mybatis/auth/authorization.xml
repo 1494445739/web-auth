@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tzg.webapp.auth.authorization.AuthorizationMapper">
+<mapper namespace="com.tzg.web.auth.authorization.AuthorizationMapper">
 
-    <resultMap id="result" type="com.tzg.webapp.auth.authorization.Authorization">
+    <resultMap id="result" type="com.tzg.web.auth.authorization.Authorization">
         <id column="id" property="id"/>
         <result column="USER_ID" property="userId"/>
         <result column="ROLE_ID" property="roleId"/>
@@ -43,7 +43,7 @@
         </if>
     </select>
 
-    <update id="update" parameterType="com.tzg.webapp.auth.authorization.Authorization">
+    <update id="update" parameterType="com.tzg.web.auth.authorization.Authorization">
         UPDATE auth_authorization
 
         <set>
@@ -70,7 +70,7 @@
         DELETE FROM auth_authorization where user_id = #{userId}
     </delete>
 
-    <insert id="insert" parameterType="com.tzg.webapp.auth.authorization.Authorization">
+    <insert id="insert" parameterType="com.tzg.web.auth.authorization.Authorization">
         INSERT INTO auth_authorization (user_id, role_id, cdt, udt) VALUES (#{userId}, #{roleId}, now(), now())
     </insert>
 

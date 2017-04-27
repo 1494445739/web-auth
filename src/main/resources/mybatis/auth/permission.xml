@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tzg.webapp.auth.permission.PermissionMapper">
+<mapper namespace="com.tzg.web.auth.permission.PermissionMapper">
 
-    <resultMap id="result" type="com.tzg.webapp.auth.permission.Permission">
+    <resultMap id="result" type="com.tzg.web.auth.permission.Permission">
         <id column="id" property="id"/>
         <result column="res_id" property="resId"/>
         <result column="role_id" property="roleId"/>
@@ -53,7 +53,7 @@
         </if>
     </select>
 
-    <update id="update" parameterType="com.tzg.webapp.auth.permission.Permission">
+    <update id="update" parameterType="com.tzg.web.auth.permission.Permission">
         UPDATE auth_permission
 
         <set>
@@ -80,7 +80,7 @@
         DELETE FROM auth_permission WHERE role_id = #{roleId}
     </delete>
 
-    <insert id="insert" parameterType="com.tzg.webapp.auth.permission.Permission">
+    <insert id="insert" parameterType="com.tzg.web.auth.permission.Permission">
         INSERT INTO auth_permission (res_id, role_id, cdt, udt) VALUES (#{resId}, #{roleId}, now(), now())
     </insert>
 
