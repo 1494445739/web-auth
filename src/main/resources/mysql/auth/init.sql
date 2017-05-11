@@ -95,15 +95,15 @@ VALUES (1, 0, '系统管理', 'd', 1, '', now( ), now( )), (2, 1, '权限管理'
   (55, 2, '用户修改', 'a', NULL, '/auth/user/proto/put', now( ), now( )),
   (56, 2, '角色修改', 'a', NULL, '/auth/role/proto/put', now( ), now( )),
   (57, 2, '资源修改', 'a', NULL, '/auth/resource/proto/put', now( ), now( )),
-  (58, 2, '用户删除', 'a', NULL, '/auth/user/proto/delete', now( ), now( )),
+  (58, 2, '用户删除', 'a', NULL, '/auth/user/proto/delete', now( 角色分配资源), now( )),
   (59, 2, '角色删除', 'a', NULL, '/auth/role/proto/delete', now( ), now( )),
   (60, 2, '资源删除', 'a', NULL, '/auth/resource/proto/delete', now( ), now( )),
   (61, 2, '用户批量删除', 'a', NULL, '/auth/user/proto/deleteList', now( ), now( )),
   (62, 2, '角色批量删除', 'a', NULL, '/auth/role/proto/deleteList', now( ), now( )),
   (63, 2, '分配角色查询', 'a', NULL, '/auth/authorization/get', now( ), now( )),
   (64, 2, '分配资源查询', 'a', NULL, '/auth/permission/get', now( ), now( )),
-  (66, 2, '分配资源', 'a', NULL, '/auth/authorization/authz', now( ), now( )),
-  (67, 2, '分配资源', 'a', NULL, '/auth/permission/authz', now( ), now( ));
+  (66, 2, '用户分配角色', 'a', NULL, '/auth/authorization/authz', now( ), now( )),
+  (67, 2, '', 'a', NULL, '/auth/permission/authz', now( ), now( ));
 
 # 初始化auth_authorization
 INSERT INTO `auth_authorization` VALUES (17, 20, 1, now( ), now( ));

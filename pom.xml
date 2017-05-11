@@ -44,6 +44,24 @@
     </developers>
 
     <!-- ====================================================== -->
+    <!--                   组件依赖（第三方依赖）                  -->
+    <!-- ====================================================== -->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- ====================================================== -->
     <!--               项目构建（包名/默认目标/插件等）             -->
     <!-- ====================================================== -->
     <build>
