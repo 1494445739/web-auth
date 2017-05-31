@@ -1,3 +1,6 @@
-1.0.1版本:
+2017/5/31
 
-此版本只是配合framework-core进行了dependency重构。故只是修改了pom.xml里面的依赖配置
++ loginUrl, successUrl, unauthorizedUrl属性的支持（shiroFilter）
++ UrlPermFilter权限过滤器的支持
+- AuthFilter鉴权过滤器的支持
+* 修改了登录逻辑。使用默认的authc鉴权过滤器的支持
