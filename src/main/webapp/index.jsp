@@ -6,6 +6,6 @@
     <title>web-auth</title>
 </head>
 <body>
-<h2>hello, web-auth</h2>
+<h2>I'm in, baby<a href="/auth/logout">click</a> logout</h2>
 </body>
 </html>

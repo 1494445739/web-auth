@@ -8,8 +8,11 @@ import com.tzg.web.auth.authorization.AuthorizationService;
 import com.tzg.web.auth.permission.PermissionService;
 import com.tzg.web.auth.resource.ResourceService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,94 +21,63 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
 @RequestMapping( "/auth" )
 public class AuthController {
 
-    @Resource
-    private ResourceService resourceService;
+    private static final String LOGIN_PAGE        = "../../login";     // 登录页面地址
+    private static final String INDEX_PAGE        = "../../index";     // 登录后的首页
+    private static final String UNAUTHORIZED_PAGE = "../../401";       // 未授权页面
 
-    @Resource
-    private PermissionService permissionService;
-
-    @Resource
-    private AuthorizationService authorizationService;
-
-    @RequestMapping( "/index" )
-    public ModelAndView index() throws Exception {
-
-        ModelAndView mav = new ModelAndView( "auth/index" );
-
-        Map< String, Object > map = new HashMap<>();
-        Set< Integer >        set = new HashSet<>();
-
-        List< Integer > roleIds     = new ArrayList<>();
-        List< Integer > resourceIds = new ArrayList<>();
-
-        List< com.tzg.web.auth.resource.Resource > resourceList;
-        List< Permission >                            permissionList;
-        List< Authorization >                         authorizationList;
-
-
-        User user = ( User ) SecurityUtils.getSubject().getPrincipal();
-        authorizationList = authorizationService.selectByUserId( user.getId() );
-        for ( Authorization authorization : authorizationList ) {
-            roleIds.add( authorization.getRoleId() );
-        }
-
-        map.put( "roleIds", roleIds );
-
-        permissionList = permissionService.selectList( map );
-        for ( Permission permission : permissionList ) {
-            resourceIds.add( permission.getResId() );
-        }
-        set.addAll( resourceIds );
-        resourceIds.clear();
-        resourceIds.addAll( set );
-
-        map.clear();
-        map.put( "resourceIds", resourceIds );
-
-        resourceList = resourceService.selectList( map );
-        mav.addObject( "resourceList", resourceList );
-
-        return mav;
-
-    }
-
-    @RequestMapping( "/main" )
-    public String main() { return "auth/main"; }
-
-    @RequestMapping( "/login" )
-    public String login() {
-        return "auth/login";
-    }
-
+    /**
+     * 登录鉴权。因为用了authc过滤器。所以不用实现登录逻辑。这里只需要判断是否登录报异常，如果登录成功就跳到successUrl，如果登录失败就跳转到LOGIN_PAGE页面
+     *
+     * @param request HttpServletRequest
+     * @return LOGIN_PAGE 登录页面
+     */
     @RequestMapping( "/authc" )
-    @ResponseBody
-    public String authc( String username, String password ) {
+    public String authc( HttpServletRequest request ) {
 
-        UsernamePasswordToken token = new UsernamePasswordToken( username, password );
-        token.setRememberMe( true );
+        String errClassName = ( String ) request.getAttribute( FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME );
+        if ( UnknownAccountException.class.getName().equals( errClassName ) || IncorrectCredentialsException.class.getName().equals( errClassName ) ) {
+            request.setAttribute( "error", "用户名/密码错误" );
+        } else if ( errClassName != null ) {
+            request.setAttribute( "error", "未知错误" );
+        }
 
-        Subject subject = SecurityUtils.getSubject();
-        subject.login( token );
-
-        return "redirect:index";
+        // 登录失败后， 重新跳回到login页面，让用户再次登录
+        return LOGIN_PAGE;
 
     }
 
-    @RequestMapping( "/logout" )
-    @ResponseBody
-    public JsonResp logout() {
+    /**
+     * 用户登录后的首页
+     *
+     * @return INDEX_PAGE 登录后的首页
+     */
+    @RequestMapping( "/index" )
+    public String index() {
+        return INDEX_PAGE;
+    }
 
+    /**
+     * 用户登出，注销账户
+     *
+     * @return LOGIN_PAGE 登录页面
+     */
+    @RequestMapping( "/logout" )
+    public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        return LOGIN_PAGE;
+    }
 
-        return new JsonResp();
-
+    @RequestMapping( "/401" )
+    public String unauthorized() {
+        return UNAUTHORIZED_PAGE;
     }
 
 }

@@ -4,52 +4,54 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <!-- shiro framework configuration -->
+    <!-- ====================================================================================== -->
+    <!-- shiro Filter Configuration:                                                            -->
+    <!--                                                                                        -->
+    <!--        loginUrl: 没有登录的用户请求需要认证的资源时（authc）自动跳转到登录页面,不是必须的属性， -->
+    <!--                  如果value不输入的话会自动需找项目webapp目录下的login.jsp页面               -->
+    <!--      successUrl: 登录成功默认跳转页面, 不配置则跳转至"/"。如果登录前点击的一个需要登录的界面，  -->
+    <!--                  则在登录自动跳转到那个需要登录的页面，不跳转到此                            -->
+    <!-- unauthorizedUrl: 没有权限默认跳转的页面。请求资源必须经过授权过滤器，比如roles[admin]，而不是  -->
+    <!--                  认证过滤器，比如authc                                                   -->
+    <!--                                                                                        -->
+    <!-- ====================================================================================== -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/auth/authc"/>
+        <property name="successUrl" value="/auth/index"/>
+        <property name="unauthorizedUrl" value="/auth/401"/>
+
         <property name="filters">
             <map>
-                <entry key="access" value-ref="authFilter"/>
+                <entry key="perm" value-ref="urlPermFilter"/>
             </map>
         </property>
 
         <property name="filterChainDefinitions">
-            <!--<value>-->
-            <!--<![CDATA[-->
-
-            <!--/ = anon-->
-
-            <!--/src/** = anon-->
-            <!--/dist/** = anon-->
-            <!--/assets/** = anon-->
-            <!--/node_modules/** = anon-->
-
-            <!--/auth/login = anon-->
-            <!--/auth/authc = anon-->
-            <!--/auth/index = anon-->
-            <!--/auth/logout = anon-->
-
-            <!--/favicon.ico = anon-->
-
-            <!--/** = access-->
-
-            <!--]]>-->
-            <!--</value>-->
             <value>
                 <![CDATA[
-                    /** = anon
+                    / = anon
+
+                    /favicon.ico = anon
+
+                    /auth/401    = anon
+                    /auth/index  = anon
+                    /auth/logout = anon
+
+                    /auth/authc  = authc
+                    /**          = authc, perm
                 ]]>
             </value>
         </property>
     </bean>
+
+    <bean id="urlPermFilter" class="com.tzg.web.auth.anonymous.filter.URLPermFilter"/>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="authRealm"/>
     </bean>
 
     <bean id="authRealm" class="com.tzg.web.auth.anonymous.realm.AuthRealm"/>
-
-    <bean id="authFilter" class="com.tzg.web.auth.anonymous.filter.AuthFilter"/>
 
     <bean id="passwordService" class="org.apache.shiro.authc.credential.DefaultPasswordService"/>
 
