@@ -32,6 +32,60 @@ public class AuthController {
     private static final String INDEX_PAGE        = "../../index";     // 登录后的首页
     private static final String UNAUTHORIZED_PAGE = "../../401";       // 未授权页面
 
+    @Resource
+    private ResourceService resourceService;
+
+    @Resource
+    private PermissionService permissionService;
+
+    @Resource
+    private AuthorizationService authorizationService;
+
+    /**
+     * 授权
+     */
+    @RequestMapping( "/authz" )
+    public ModelAndView authz() throws Exception {
+
+        ModelAndView mav = new ModelAndView( "auth/index" );
+
+        Map< String, Object > map = new HashMap<>();
+        Set< Integer >        set = new HashSet<>();
+
+        List< Integer > roleIds     = new ArrayList<>();
+        List< Integer > resourceIds = new ArrayList<>();
+
+        List< com.tzg.web.auth.resource.Resource > resourceList;
+        List< Permission >                         permissionList;
+        List< Authorization >                      authorizationList;
+
+
+        User user = ( User ) SecurityUtils.getSubject().getPrincipal();
+        authorizationList = authorizationService.selectByUserId( user.getId() );
+        for ( Authorization authorization : authorizationList ) {
+            roleIds.add( authorization.getRoleId() );
+        }
+
+        map.put( "roleIds", roleIds );
+
+        permissionList = permissionService.selectList( map );
+        for ( Permission permission : permissionList ) {
+            resourceIds.add( permission.getResId() );
+        }
+        set.addAll( resourceIds );
+        resourceIds.clear();
+        resourceIds.addAll( set );
+
+        map.clear();
+        map.put( "resourceIds", resourceIds );
+
+        resourceList = resourceService.selectList( map );
+        mav.addObject( "resourceList", resourceList );
+
+        return mav;
+
+    }
+
     /**
      * 登录鉴权。因为用了authc过滤器。所以不用实现登录逻辑。这里只需要判断是否登录报异常，如果登录成功就跳到successUrl，如果登录失败就跳转到LOGIN_PAGE页面
      *
@@ -75,6 +129,9 @@ public class AuthController {
         return LOGIN_PAGE;
     }
 
+    /**
+     * 访问未授权资源.
+     */
     @RequestMapping( "/401" )
     public String unauthorized() {
         return UNAUTHORIZED_PAGE;
