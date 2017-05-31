@@ -30,14 +30,13 @@
         <property name="filterChainDefinitions">
             <value>
                 <![CDATA[
-                    / = anon
-
                     /favicon.ico = anon
 
                     /auth/401    = anon
                     /auth/index  = anon
                     /auth/logout = anon
 
+                    /            = authc
                     /auth/authc  = authc
                     /**          = authc, perm
                 ]]>
