@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- shiro framework configuration -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="filters">
+            <map>
+                <entry key="access" value-ref="authFilter"/>
+            </map>
+        </property>
+
+        <property name="filterChainDefinitions">
+            <!--<value>-->
+            <!--<![CDATA[-->
+
+            <!--/ = anon-->
+
+            <!--/src/** = anon-->
+            <!--/dist/** = anon-->
+            <!--/assets/** = anon-->
+            <!--/node_modules/** = anon-->
+
+            <!--/auth/login = anon-->
+            <!--/auth/authc = anon-->
+            <!--/auth/index = anon-->
+            <!--/auth/logout = anon-->
+
+            <!--/favicon.ico = anon-->
+
+            <!--/** = access-->
+
+            <!--]]>-->
+            <!--</value>-->
+            <value>
+                <![CDATA[
+                    /** = anon
+                ]]>
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="authRealm"/>
+    </bean>
+
+    <bean id="authRealm" class="com.tzg.web.auth.anonymous.realm.AuthRealm"/>
+
+    <bean id="authFilter" class="com.tzg.web.auth.anonymous.filter.AuthFilter"/>
+
+    <bean id="passwordService" class="org.apache.shiro.authc.credential.DefaultPasswordService"/>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+</beans>
