@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.tzg</groupId>
         <artifactId>framework-wrapper</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.1</version>
     </parent>
 
     <!-- ====================================================== -->
@@ -24,6 +24,7 @@
     <!--                         POM GAV                        -->
     <!-- ====================================================== -->
     <artifactId>web-auth</artifactId>
+    <version>1.0.1-RC</version>
 
     <!-- ====================================================== -->
     <!--                       项目名和组织                      -->
@@ -60,8 +61,8 @@
             <artifactId>shiro-spring</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.tzg</groupId>
-            <artifactId>component-browser-starter</artifactId>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cas</artifactId>
         </dependency>
     </dependencies>
 

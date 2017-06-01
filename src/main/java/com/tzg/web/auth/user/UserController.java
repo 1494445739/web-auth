@@ -16,8 +16,6 @@ import javax.annotation.Resource;
 @RequestMapping( "/auth/user" )
 public class UserController extends ProtoController< User > {
 
-    private static final Logger logger = LoggerFactory.getLogger( UserController.class );
-
     @Resource
     private UserService userService;
 
