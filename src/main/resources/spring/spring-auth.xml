@@ -17,7 +17,7 @@
     <!-- ====================================================================================== -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="#{props['cas.loginUrl']}"/>
+        <property name="loginUrl" value="#{authConfig['cas.loginUrl']}"/>
         <property name="successUrl" value="/auth/index"/>
         <property name="unauthorizedUrl" value="/auth/401"/>
 
@@ -49,19 +49,19 @@
 
     <!-- 配置验证错误时的失败页面 -->
     <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
-        <property name="failureUrl" value="#{props['cas.failureUrl']}"/>
+        <property name="failureUrl" value="#{authConfig['cas.failureUrl']}"/>
     </bean>
 
     <!-- 配置注销后的回调页面 -->
     <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
-        <property name="redirectUrl" value="#{props['cas.logoutUrl']}"/>
+        <property name="redirectUrl" value="#{authConfig['cas.logoutUrl']}"/>
     </bean>
 
     <bean id="casAuthRealm" class="com.tzg.web.auth.anonymous.realm.CasAuthRealm">
         <!-- cas服务端地址前缀 -->
-        <property name="casServerUrlPrefix" value="#{props['cas.serverUrl']}"/>
+        <property name="casServerUrlPrefix" value="#{authConfig['cas.serverUrl']}"/>
         <!-- 应用服务地址，用来接收cas服务端票据 -->
-        <property name="casService" value="#{props['cas.clientUrl']}"/>
+        <property name="casService" value="#{authConfig['cas.clientUrl']}"/>
     </bean>
 
     <bean id="urlPermFilter" class="com.tzg.web.auth.anonymous.filter.URLPermFilter"/>
