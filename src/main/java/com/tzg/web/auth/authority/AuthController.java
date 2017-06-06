@@ -23,9 +23,9 @@ import java.util.*;
 @RequestMapping( "/auth" )
 public class AuthController {
 
-    private static final String LOGIN_PAGE        = "login";     // 登录页面地址
-    private static final String INDEX_PAGE        = "index";     // 登录后的首页
-    private static final String UNAUTHORIZED_PAGE = "401";       // 未授权页面
+    private static final String LOGIN_PAGE        = "auth/login";     // 登录页面地址
+    private static final String INDEX_PAGE        = "auth/index";     // 登录后的首页
+    private static final String UNAUTHORIZED_PAGE = "auth/401";       // 未授权页面
 
     @Resource
     private ResourceService resourceService;

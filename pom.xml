@@ -75,7 +75,7 @@
                 <version>2.4</version>
                 <configuration>
                     <attachClasses>true</attachClasses>
-                    <packagingIncludes>**/*.class, **/*.xml, **/*.sql, WEB-INF/lib/shiro*</packagingIncludes>
+                    <packagingIncludes>**/*.class, **/*.xml, **/*.sql, WEB-INF/lib/shiro*, **/*.jsp</packagingIncludes>
                 </configuration>
             </plugin>
         </plugins>
