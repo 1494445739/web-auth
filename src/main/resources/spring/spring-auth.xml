@@ -32,6 +32,11 @@
         <property name="filterChainDefinitions">
             <value>
                 <![CDATA[
+                    /**.js       = anon
+                    /**.css      = anon
+                    /**.jpg      = anon
+                    /**.png      = anon
+                    /**.xml      = anon
                     /favicon.ico = anon
 
                     /auth/401    = anon
