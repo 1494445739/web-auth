@@ -80,7 +80,7 @@
                 <version>2.4</version>
                 <configuration>
                     <attachClasses>true</attachClasses>
-                    <packagingIncludes>**/*.class, **/*.xml, **/*.sql, WEB-INF/lib/shiro*, **/*.jsp</packagingIncludes>
+                    <packagingIncludes>**/*.class, **/*.xml, **/*.sql, WEB-INF/lib/shiro*, **/*.jsp, WEB-INF/lib/cas*</packagingIncludes>
                 </configuration>
             </plugin>
         </plugins>
