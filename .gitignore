@@ -1,2 +1,5 @@
 .idea/ 
+.gitignore
+logs/
+target/
 web-auth.iml
