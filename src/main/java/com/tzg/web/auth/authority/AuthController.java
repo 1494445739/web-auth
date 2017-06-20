@@ -1,5 +1,6 @@
 package com.tzg.web.auth.authority;
 
+import com.tzg.service.support.json.JsonResp;
 import com.tzg.web.auth.authorization.Authorization;
 import com.tzg.web.auth.authorization.AuthorizationService;
 import com.tzg.web.auth.permission.Permission;
@@ -13,6 +14,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -40,9 +42,8 @@ public class AuthController {
      * 授权
      */
     @RequestMapping( "/authz" )
-    public ModelAndView authz() throws Exception {
-
-        ModelAndView mav = new ModelAndView( INDEX_PAGE );
+    @ResponseBody
+    public JsonResp authz() throws Exception {
 
         Map< String, Object > map = new HashMap<>();
         Set< Integer >        set = new HashSet<>();
@@ -75,9 +76,8 @@ public class AuthController {
         map.put( "resourceIds", resourceIds );
 
         resourceList = resourceService.selectList( map );
-        mav.addObject( "resourceList", resourceList );
 
-        return mav;
+        return new JsonResp( JsonResp.OK, resourceList );
 
     }
 
@@ -100,6 +100,16 @@ public class AuthController {
         // 登录失败后， 重新跳回到login页面，让用户再次登录
         return LOGIN_PAGE;
 
+    }
+
+    /**
+     * 用户登录后的首页
+     *
+     * @return INDEX_PAGE 登录后的首页
+     */
+    @RequestMapping( "/index" )
+    public String index() {
+        return INDEX_PAGE;
     }
 
     /**
