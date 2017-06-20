@@ -103,16 +103,6 @@ public class AuthController {
     }
 
     /**
-     * 用户登录后的首页
-     *
-     * @return INDEX_PAGE 登录后的首页
-     */
-    @RequestMapping( "/index" )
-    public String index() {
-        return INDEX_PAGE;
-    }
-
-    /**
      * 用户登出，注销账户
      *
      * @return LOGIN_PAGE 登录页面
