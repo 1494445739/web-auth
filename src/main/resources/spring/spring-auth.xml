@@ -18,7 +18,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/auth/authc"/>
-        <property name="successUrl" value="/auth/index"/>
+        <property name="successUrl" value="/auth/authz"/>
         <property name="unauthorizedUrl" value="/auth/401"/>
 
         <property name="filters">
@@ -34,7 +34,6 @@
                     /dist/**     = anon
 
                     /auth/401    = anon
-                    /auth/index  = anon
                     /auth/logout = anon
 
                     /            = authc
