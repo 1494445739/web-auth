@@ -18,7 +18,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="#{props['cas.loginUrl']}"/>
-        <property name="successUrl" value="/auth/authz"/>
+        <property name="successUrl" value="/auth/index"/>
         <property name="unauthorizedUrl" value="/auth/401"/>
 
         <property name="filters">
