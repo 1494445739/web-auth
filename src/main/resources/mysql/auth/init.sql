@@ -103,7 +103,8 @@ VALUES (1, 0, '系统管理', 'd', 1, '', now( ), now( )), (2, 1, '权限管理'
   (63, 2, '分配角色查询', 'a', NULL, '/auth/authz/get', now( ), now( )),
   (64, 2, '分配资源查询', 'a', NULL, '/auth/permission/get', now( ), now( )),
   (66, 2, '用户分配角色', 'a', NULL, '/auth/authz/authz', now( ), now( )),
-  (67, 2, '', 'a', NULL, '/auth/permission/authz', now( ), now( ));
+  (67, 2, '', 'a', NULL, '/auth/permission/authz', now( ), now( )),
+  (68, 2, '角色授权', 'a', NULL, '/auth/authz', now( ), now( ));
 
 # 初始化auth_authorization
 INSERT INTO `auth_authorization` VALUES (17, 20, 1, now( ), now( ));
@@ -117,4 +118,4 @@ VALUES (234, 1, 1, now( ), now( )), (235, 2, 1, now( ), now( )), (236, 67, 1, no
   (246, 56, 1, now( ), now( )), (247, 55, 1, now( ), now( )), (248, 54, 1, now( ), now( )),
   (249, 46, 1, now( ), now( )), (250, 47, 1, now( ), now( )), (251, 48, 1, now( ), now( )),
   (252, 49, 1, now( ), now( )), (253, 50, 1, now( ), now( )), (254, 51, 1, now( ), now( )),
-  (255, 52, 1, now( ), now( )), (256, 53, 1, now( ), now( ));
+  (255, 52, 1, now( ), now( )), (256, 53, 1, now( ), now( )), (257, 68, 1, now( ), now( ));

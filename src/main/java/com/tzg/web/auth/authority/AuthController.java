@@ -42,7 +42,7 @@ public class AuthController {
     @RequestMapping( "/authz" )
     public ModelAndView authz() throws Exception {
 
-        ModelAndView mav = new ModelAndView( "/index.jsp" );
+        ModelAndView mav = new ModelAndView( INDEX_PAGE );
 
         Map< String, Object > map = new HashMap<>();
         Set< Integer >        set = new HashSet<>();
