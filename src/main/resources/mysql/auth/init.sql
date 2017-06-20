@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS AUTH_AUTHORIZATION;
 # 用户表。 CDT - 创建日期时间； UDT - 更新日期时间。以下略
 CREATE TABLE IF NOT EXISTS AUTH_USER (
   ID       INT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  NAME     VARCHAR(30)  NOT NULL COMMENT '用户名',
+  NAME     VARCHAR(30)  NOT NULL
+  COMMENT '用户名',
   PASSWORD VARCHAR(100) NOT NULL,
   CDT      DATETIME     NOT NULL,
   UDT      DATETIME     NOT NULL,
@@ -95,7 +96,7 @@ VALUES (1, 0, '系统管理', 'd', 1, '', now( ), now( )), (2, 1, '权限管理'
   (55, 2, '用户修改', 'a', NULL, '/auth/user/proto/put', now( ), now( )),
   (56, 2, '角色修改', 'a', NULL, '/auth/role/proto/put', now( ), now( )),
   (57, 2, '资源修改', 'a', NULL, '/auth/resource/proto/put', now( ), now( )),
-  (58, 2, '用户删除', 'a', NULL, '/auth/user/proto/delete', now( 角色分配资源), now( )),
+  (58, 2, '用户删除', 'a', NULL, '/auth/user/proto/delete', now( 角色分配资源 ), now( )),
   (59, 2, '角色删除', 'a', NULL, '/auth/role/proto/delete', now( ), now( )),
   (60, 2, '资源删除', 'a', NULL, '/auth/resource/proto/delete', now( ), now( )),
   (61, 2, '用户批量删除', 'a', NULL, '/auth/user/proto/deleteList', now( ), now( )),
@@ -103,7 +104,8 @@ VALUES (1, 0, '系统管理', 'd', 1, '', now( ), now( )), (2, 1, '权限管理'
   (63, 2, '分配角色查询', 'a', NULL, '/auth/authz/get', now( ), now( )),
   (64, 2, '分配资源查询', 'a', NULL, '/auth/permission/get', now( ), now( )),
   (66, 2, '用户分配角色', 'a', NULL, '/auth/authz/authz', now( ), now( )),
-  (67, 2, '', 'a', NULL, '/auth/permission/authz', now( ), now( ));
+  (67, 2, '角色分配资源', 'a', NULL, '/auth/permission/authz', now( ), now( )),
+  (68, 2, '角色授权', 'a', NULL, '/auth/authz', now( ), now( ));
 
 # 初始化auth_authorization
 INSERT INTO `auth_authorization` VALUES (17, 20, 1, now( ), now( ));
@@ -117,4 +119,4 @@ VALUES (234, 1, 1, now( ), now( )), (235, 2, 1, now( ), now( )), (236, 67, 1, no
   (246, 56, 1, now( ), now( )), (247, 55, 1, now( ), now( )), (248, 54, 1, now( ), now( )),
   (249, 46, 1, now( ), now( )), (250, 47, 1, now( ), now( )), (251, 48, 1, now( ), now( )),
   (252, 49, 1, now( ), now( )), (253, 50, 1, now( ), now( )), (254, 51, 1, now( ), now( )),
-  (255, 52, 1, now( ), now( )), (256, 53, 1, now( ), now( ));
+  (255, 52, 1, now( ), now( )), (256, 53, 1, now( ), now( )), (257, 68, 1, now( ), now( ));
