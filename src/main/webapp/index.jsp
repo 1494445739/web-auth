@@ -3,9 +3,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>index page</title>
+    <title>web-auth</title>
 </head>
 <body>
-<h2>Index Page. Test Page Link: <a href="/auth/user/proto/get?id=20">test me</a></h2>
+<h2>I'm in, baby<a href="/auth/logout">click</a> logout</h2>
 </body>
 </html>
