@@ -36,6 +36,8 @@
                     /auth/401    = anon
                     /auth/index  = anon
                     /auth/logout = anon
+					
+					/druid/*	 = anon
 
                     /            = authc
                     /auth/authc  = authc
